@@ -4,9 +4,7 @@ cohort_base as (
 SELECT 
   date_trunc('Month', subscription_start_date) ::date as cohort,
   date_trunc('Month', month) :: date as month,
---  date_trunc('Month', month-30) :: date as previous_month,
   datediff('Month', cohort, month) as cohort_age,
---  round((month - cohort) / 28,0) as cohort_age,
   is_tcs_subscription as TCS,
   is_strictly_ka_batch as KA,
   count (distinct subscription_name) as volume,
